@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Register/Login";
+}
+
+@model road_runner.Models.UserViewModel
+
+
+<div class="row">
+    <div class="col">
+        <h1>Registration</h1>
+        <form asp-action="Register" asp-controller="Home" method="post">
+        <div class="form-group">
+            <label for="Reg.first_name">First Name:</label>
+            <input type="text" class="form-control" asp-for="Reg.first_name">
+            <span class="text-danger" asp-validation-for="Reg.first_name"></span>
+        </div>
+        <div class="form-group">
+            <label for="Reg.last_name">Last Name:</label>
+            <input type="text" class="form-control" asp-for="Reg.last_name">
+            <span class="text-danger" asp-validation-for="Reg.last_name"></span>
+        </div>
+        <div class="form-group">
+            <label for="Reg.username">Username:</label>
+            <input type="text" class="form-control" asp-for="Reg.username">
+            <span class="text-danger" asp-validation-for="Reg.username"></span>
+        </div>
+        <div class="form-group">
+            <label for="Reg.email">Email:</label>
+            <input type="text" class="form-control" asp-for="Reg.email">
+            <span class="text-danger" asp-validation-for="Reg.email"></span>
+        </div>
+        <div class="form-group">
+            <label for="Reg.password">Password:</label>
+            <input type="password" class="form-control" asp-for="Reg.password">
+            <span class="text-danger" asp-validation-for="Reg.password"></span>
+        </div>
+        <div class="form-group">
+            <label for="Reg.cw_password">Confirm Password:</label>
+            <input type="password" class="form-control" asp-for="Reg.cw_password">
+            <span class="text-danger" asp-validation-for="Reg.cw_password"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Register</button>
+        </form><br>
+    </div>
+
+    <div class="col">
+        <h1>Login</h1>
+        <form asp-action="Login" asp-controller="Home" method="post">
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input class="form-control" asp-for="Log.email">
+            <span class="text-danger" asp-validation-for="Log.email"></span>
+        </div>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input class="form-control" asp-for="Log.password">
+            <span class="text-danger" asp-validation-for="Log.password"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+</div>

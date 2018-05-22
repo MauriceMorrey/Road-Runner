@@ -1,0 +1,11 @@
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/bin/Debug/netcoreapp2.0/road_runner.deps.json
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.json
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.dev.json
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/bin/Debug/netcoreapp2.0/road_runner.dll
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/bin/Debug/netcoreapp2.0/road_runner.pdb
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/obj/Debug/netcoreapp2.0/road_runner.csprojResolveAssemblyReference.cache
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/obj/Debug/netcoreapp2.0/road_runner.csproj.CoreCompileInputs.cache
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/obj/Debug/netcoreapp2.0/road_runner.AssemblyInfoInputs.cache
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/obj/Debug/netcoreapp2.0/road_runner.AssemblyInfo.cs
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/obj/Debug/netcoreapp2.0/road_runner.dll
+/Users/konrad.labuz/Documents/CD_Projects/C#/road_runner/obj/Debug/netcoreapp2.0/road_runner.pdb
