@@ -1,0 +1,11 @@
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\bin\Debug\netcoreapp2.0\road_runner.deps.json
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\bin\Debug\netcoreapp2.0\road_runner.runtimeconfig.json
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\bin\Debug\netcoreapp2.0\road_runner.runtimeconfig.dev.json
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\bin\Debug\netcoreapp2.0\road_runner.dll
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\bin\Debug\netcoreapp2.0\road_runner.pdb
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\obj\Debug\netcoreapp2.0\road_runner.csprojResolveAssemblyReference.cache
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\obj\Debug\netcoreapp2.0\road_runner.csproj.CoreCompileInputs.cache
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\obj\Debug\netcoreapp2.0\road_runner.AssemblyInfoInputs.cache
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\obj\Debug\netcoreapp2.0\road_runner.AssemblyInfo.cs
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\obj\Debug\netcoreapp2.0\road_runner.dll
+C:\Users\mac\Desktop\DojoAssignments\C#\ENTITYFRAMEWORKCORE\RoadRunner\obj\Debug\netcoreapp2.0\road_runner.pdb
