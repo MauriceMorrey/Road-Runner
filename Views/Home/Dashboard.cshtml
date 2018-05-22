@@ -2,4 +2,64 @@
     ViewData["Title"] = "Road Runner - Dashboard";
 }
 
-<h1>Hello, @ViewBag.user.username!</h1>
+<p class="text-right">
+    <a class="btn btn-link" href="/logout">Logout</a>
+</p>
+
+<h2>Hello, <span style="color: rgb(13, 143, 143)">@ViewBag.user.username</span>!</h2><br>
+<div class="container">
+<h4>Are you ready for next <a href="create">trip</a>?</h4><hr>
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Destination</th>
+      <th scope="col">Start Point</th>
+      <th scope="col">Travel Start Date</th>
+      <th scope="col">Travel End Date</th>
+      <th scope="col">Runners</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach (var trip in ViewBag.trip)
+    {
+      <tr>
+      <td><a href="/show/@trip.tripId">@trip.destination</a></td>
+      <td>@trip.start_point</td>
+      <td>@trip.start_date.ToString("MMM dd, yyyy hh:mm tt")</td>
+      <td>@trip.end_date.ToString("MMM dd, yyyy hh:mm tt")</td>
+      <td>@trip.runners.Count</td>
+
+    @{
+        if(ViewBag.user == trip.planner)
+        { 
+            <td>
+                <form asp-action="delete" asp-controller="Home" method="post">
+                    <input type="hidden" value=@trip.tripId name="tripId">
+                    <input class="btn btn-link" type="submit" value="Delete">
+                </form>
+            </td>
+        } 
+        else if(trip.currentUser){
+            <td>
+            <form asp-action="leave" asp-controller="Home" method="post">
+                    <input type="hidden" value=@trip.tripId name="tripId">
+                    <input class="btn btn-link" type="submit" value="Leave">
+            </form>
+            </td>
+        } else {
+            <td>
+                <form asp-action="join" asp-controller="Home" method="post">
+                    <input type="hidden" value=@trip.tripId name="tripId">
+                    <input class="btn btn-link" type="submit" value="Join">
+                </form>
+            </td>
+        }
+    }
+    </tr>
+    }
+    </tbody>
+    </table>
+    <a href="/create" class="btn btn-link">New Trip</a>
+    </div>

@@ -127,6 +127,140 @@ namespace road_runner.Controllers
                 return RedirectToAction("Index");
             }
         }
+
+        [HttpPost]
+        [Route("create")]
+        public IActionResult Create(TripViewModel plan)
+        {
+            int? userId = HttpContext.Session.GetInt32("userId");
+            var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)userId);
+
+
+            if (ModelState.IsValid)
+            {
+                Trip newTrip = new Trip()
+                {
+                    start_point = plan.start_point,
+                    destination = plan.destination,
+                    description = plan.description,
+                    start_date = plan.start_date,
+                    end_date = plan.end_date,
+                    userId = currentUser.userId
+                };
+
+                _context.Add(newTrip);
+                _context.SaveChanges();
+
+                Runner newRunner = new Runner()
+                {
+                    userId = currentUser.userId,
+                    tripId = newTrip.tripId
+                };
+
+                _context.Add(newRunner);
+                _context.SaveChanges();
+
+
+
+                return RedirectToAction("Dashboard");
+            }
+            return View("Create");
+
+        }
+
+        [HttpGet]
+        [Route("create")]
+        public IActionResult Create()
+        {
+            int? userId = HttpContext.Session.GetInt32("userId");
+            var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)userId);
+
+            if (currentUser != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost]
+        [Route("delete")]
+        public IActionResult Delete(int tripId)
+        {
+            Trip trip = _context.trips.SingleOrDefault(t => t.tripId == tripId);
+
+            _context.Remove(trip);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        [Route("join")]
+        public IActionResult Join(int tripId)
+        {
+            int? userId = HttpContext.Session.GetInt32("userId");
+            var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)userId);
+
+            Trip trip = _context.trips.SingleOrDefault(p => p.tripId == tripId);
+
+            Runner joined = new Runner()
+            {
+                userId = currentUser.userId,
+                tripId = trip.tripId
+            };
+
+            _context.Add(joined);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        [Route("leave")]
+        public IActionResult Leave(int tripId)
+        {
+            int? userId = HttpContext.Session.GetInt32("userId");
+            var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)userId);
+
+            Trip trip = _context.trips.SingleOrDefault(p => p.tripId == tripId);
+            Runner leaving = _context.runners.Where(v => v.tripId == trip.tripId && v.userId == currentUser.userId).SingleOrDefault();
+
+            _context.Remove(leaving);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpGet]
+        [Route("show/{tripId}")]
+        public IActionResult Show(int tripId)
+        {
+
+            Trip trip = _context.trips.Where(w => w.tripId == tripId).Include(p => p.runners).ThenInclude(v => v.user).SingleOrDefault();
+            ViewBag.t = trip;
+
+            return View();
+        }
+
+        [HttpGet]
+        [Route("user/{userId}")]
+        public IActionResult UserPage(int userId)
+        {
+
+            int? uId = HttpContext.Session.GetInt32("userId");
+
+            if (uId == null)
+            {
+                return RedirectToAction("Index");
+            }
+            User thisUser = _context.users.Include(u => u.attended).Include(u => u.planned).SingleOrDefault(u => u.userId == userId);
+            ViewBag.thisUser = thisUser;
+
+            return View("User");
+        }
     
 
         public IActionResult Error()

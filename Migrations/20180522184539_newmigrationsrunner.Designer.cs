@@ -11,9 +11,10 @@ using System;
 namespace road_runner.Migrations
 {
     [DbContext(typeof(RoadRunnerContext))]
-    partial class RoadRunnerContextModelSnapshot : ModelSnapshot
+    [Migration("20180522184539_newmigrationsrunner")]
+    partial class newmigrationsrunner
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

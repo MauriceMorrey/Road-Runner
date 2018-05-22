@@ -1,0 +1,28 @@
+@{
+    ViewData["Title"] = "Deatil's Page";
+}
+
+<p class="text-right">
+    <a href="/dashboard" class="btn btn-link">Dashboard</a>
+    <a href="/logout" class="btn btn-link">Logout</a>
+</p>
+
+<h1>@ViewBag.t.destination</h1>
+
+<h4>@ViewBag.t.start_date.ToString("MMM dd, yyyy hh:mm tt") &rarr; @ViewBag.t.end_date.ToString("MMM dd, yyyy hh:mm tt")</h4>
+by @ViewBag.t.planner.username
+
+<h4>Description: @ViewBag.t.description</h4><br>
+
+<h4>Runners:</h4>   
+    @foreach (var user in @ViewBag.t.runners)
+    {   
+        {
+        <h5><a href="/user/@user.userId">@user.user.first_name @user.user.last_name</a></h5>
+        }
+       
+    } 
+    
+   
+
+    
