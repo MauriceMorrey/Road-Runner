@@ -1,0 +1,45 @@
+@{
+    ViewData["Title"] = "Create New Trip";
+}
+@model road_runner.Models.TripViewModel
+
+<p class="text-right">
+    <a href="/dashboard" class="btn btn-link">Dashboard</a>
+    <a href="/logout" class="btn btn-link">Logout</a>
+</p>
+
+<h1>Create New Trip!</h1><br>
+<form asp-action="Create" asp-controller="Home" method="post">
+        <div class="form-group">
+            <label for="start_point">Start Point:</label>
+            <input class="form-control" asp-for="start_point">
+            <span class="text-danger" asp-validation-for="start_point"></span>        
+        </div>
+        <div class="form-group">
+            <label for="destination">Destination:</label>
+            <input class="form-control" asp-for="destination">
+            <span class="text-danger" asp-validation-for="destination"></span>
+
+            
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea class="form-control" asp-for="description" rows="4"></textarea>
+            <span class="text-danger" asp-validation-for="description"></span>
+    
+        </div>
+        <div class="form-group">
+            <label for="start_date">Start Date:</label>
+            <input class="form-control" asp-for="start_date">
+            <span class="text-danger" asp-validation-for="start_date"></span>
+            
+        </div>
+        <div class="form-group">
+            <label for="end_date">End Date:</label>
+            <input class="form-control" asp-for="end_date">
+            <span class="text-danger" asp-validation-for="end_date"></span>
+            
+        </div>
+
+        <button type="submit" class="btn btn-link">Create</button>
+</form><br>
