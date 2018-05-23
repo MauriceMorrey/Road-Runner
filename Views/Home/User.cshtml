@@ -13,4 +13,9 @@
         <input type="hidden" value=@ViewBag.currentUser.userId name="friendAId">
         <input class="btn btn-link" type="submit" value="Add friend">
 </form>
+} else if(ViewBag.thisUser == ViewBag.currentUser){
+<p><a href="#">Update your profile</a></p>
+} else {
+<p>You are already friends!</p>
 }
+
