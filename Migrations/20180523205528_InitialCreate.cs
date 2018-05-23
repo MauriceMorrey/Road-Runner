@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace road_runner.Migrations
 {
-    public partial class newuuuva : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
