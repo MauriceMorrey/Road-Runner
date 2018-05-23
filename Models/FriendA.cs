@@ -12,7 +12,7 @@ namespace road_runner.Models
 
         public int userId { get; set; }
 
-        public User friend1 { get; set; }
-
+        public User user { get; set; }   
+        public List<Friend> friends { get;set; }
     }
 }

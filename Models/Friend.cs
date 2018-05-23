@@ -10,14 +10,12 @@ namespace road_runner.Models
         [Key]
         public int friendId { get; set; }
 
-        public int friendAId { get; set; }
+        public int senderId { get; set; }
 
-        public FriendA sender { get; set; }
 
-        public int friendBId { get; set; }
+        public int receiverId { get; set; }
 
-        public FriendB receiver { get; set; }
-        
+
         public bool accepted { get;set; }
 
     }

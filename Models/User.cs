@@ -22,14 +22,16 @@ namespace road_runner.Models {
         public List<Trip> planned { get;set; }
 
         public List<Runner> attended { get;set; }
-        public List<Friend> friends { get;set; }
-        
+        public List<Friend> sent { get;set; }
+        public List<Friend> received { get;set; }
+
         public User(){
             created_at = DateTime.Now;
             updated_at = DateTime.Now;
             planned = new List<Trip>();
             attended = new List<Runner>();
-            friends = new List<Friend>();
+            sent = new List<Friend>();
+            received = new List<Friend>();
         }
 
 	}

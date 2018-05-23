@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace road_runner.Migrations
 {
-    public partial class runnermigrations : Migration
+    public partial class newuuuva : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -29,45 +29,34 @@ namespace road_runner.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "friend_a",
+                name: "friends",
                 columns: table => new
                 {
-                    friendAId = table.Column<int>(nullable: false)
+                    friendId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    accepted = table.Column<bool>(nullable: false),
                     created_at = table.Column<DateTime>(nullable: false),
+                    receiverId = table.Column<int>(nullable: false),
+                    senderId = table.Column<int>(nullable: false),
                     updated_at = table.Column<DateTime>(nullable: false),
-                    userId = table.Column<int>(nullable: false)
+                    userId = table.Column<int>(nullable: true),
+                    userId1 = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_friend_a", x => x.friendAId);
+                    table.PrimaryKey("PK_friends", x => x.friendId);
                     table.ForeignKey(
-                        name: "FK_friend_a_users_userId",
+                        name: "FK_friends_users_userId",
                         column: x => x.userId,
                         principalTable: "users",
                         principalColumn: "userId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "friend_b",
-                columns: table => new
-                {
-                    friendBId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    created_at = table.Column<DateTime>(nullable: false),
-                    updated_at = table.Column<DateTime>(nullable: false),
-                    userId = table.Column<int>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_friend_b", x => x.friendBId);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_friend_b_users_userId",
-                        column: x => x.userId,
+                        name: "FK_friends_users_userId1",
+                        column: x => x.userId1,
                         principalTable: "users",
                         principalColumn: "userId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -77,6 +66,7 @@ namespace road_runner.Migrations
                     tripId = table.Column<int>(nullable: false)
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     created_at = table.Column<DateTime>(nullable: false),
+                    currentUser = table.Column<bool>(nullable: false),
                     description = table.Column<string>(nullable: true),
                     destination = table.Column<string>(nullable: true),
                     end_date = table.Column<DateTime>(nullable: false),
@@ -94,41 +84,6 @@ namespace road_runner.Migrations
                         principalTable: "users",
                         principalColumn: "userId",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "friends",
-                columns: table => new
-                {
-                    friendId = table.Column<int>(nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    created_at = table.Column<DateTime>(nullable: false),
-                    friendAId = table.Column<int>(nullable: false),
-                    friendBId = table.Column<int>(nullable: false),
-                    updated_at = table.Column<DateTime>(nullable: false),
-                    userId = table.Column<int>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_friends", x => x.friendId);
-                    table.ForeignKey(
-                        name: "FK_friends_friend_a_friendAId",
-                        column: x => x.friendAId,
-                        principalTable: "friend_a",
-                        principalColumn: "friendAId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_friends_friend_b_friendBId",
-                        column: x => x.friendBId,
-                        principalTable: "friend_b",
-                        principalColumn: "friendBId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_friends_users_userId",
-                        column: x => x.userId,
-                        principalTable: "users",
-                        principalColumn: "userId",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -188,29 +143,14 @@ namespace road_runner.Migrations
                 column: "tripId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_friend_a_userId",
-                table: "friend_a",
-                column: "userId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_friend_b_userId",
-                table: "friend_b",
-                column: "userId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_friends_friendAId",
-                table: "friends",
-                column: "friendAId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_friends_friendBId",
-                table: "friends",
-                column: "friendBId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_friends_userId",
                 table: "friends",
                 column: "userId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_friends_userId1",
+                table: "friends",
+                column: "userId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_runners_tripId",
@@ -238,12 +178,6 @@ namespace road_runner.Migrations
 
             migrationBuilder.DropTable(
                 name: "runners");
-
-            migrationBuilder.DropTable(
-                name: "friend_a");
-
-            migrationBuilder.DropTable(
-                name: "friend_b");
 
             migrationBuilder.DropTable(
                 name: "trips");

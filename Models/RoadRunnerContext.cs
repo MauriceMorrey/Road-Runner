@@ -11,8 +11,6 @@ namespace road_runner.Models
 	    public DbSet<Trip> trips {get; set;}
 	    public DbSet<Runner> runners {get; set;}
 	    public DbSet<Friend> friends {get; set;}
-	    public DbSet<FriendA> friend_a {get; set;}
-	    public DbSet<FriendB> friend_b {get; set;}
 	    public DbSet<Feature> features {get; set;}
 
     }

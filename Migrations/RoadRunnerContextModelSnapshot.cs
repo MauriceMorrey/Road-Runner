@@ -51,59 +51,23 @@ namespace road_runner.Migrations
 
                     b.Property<DateTime>("created_at");
 
-                    b.Property<int>("friendAId");
+                    b.Property<int>("receiverId");
 
-                    b.Property<int>("friendBId");
+                    b.Property<int>("senderId");
 
                     b.Property<DateTime>("updated_at");
 
                     b.Property<int?>("userId");
 
+                    b.Property<int?>("userId1");
+
                     b.HasKey("friendId");
 
-                    b.HasIndex("friendAId");
-
-                    b.HasIndex("friendBId");
-
                     b.HasIndex("userId");
+
+                    b.HasIndex("userId1");
 
                     b.ToTable("friends");
-                });
-
-            modelBuilder.Entity("road_runner.Models.FriendA", b =>
-                {
-                    b.Property<int>("friendAId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("created_at");
-
-                    b.Property<DateTime>("updated_at");
-
-                    b.Property<int>("userId");
-
-                    b.HasKey("friendAId");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("friend_a");
-                });
-
-            modelBuilder.Entity("road_runner.Models.FriendB", b =>
-                {
-                    b.Property<int>("friendBId")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<DateTime>("created_at");
-
-                    b.Property<DateTime>("updated_at");
-
-                    b.Property<int>("userId");
-
-                    b.HasKey("friendBId");
-
-                    b.HasIndex("userId");
-
-                    b.ToTable("friend_b");
                 });
 
             modelBuilder.Entity("road_runner.Models.Runner", b =>
@@ -191,35 +155,13 @@ namespace road_runner.Migrations
 
             modelBuilder.Entity("road_runner.Models.Friend", b =>
                 {
-                    b.HasOne("road_runner.Models.FriendA", "sender")
-                        .WithMany()
-                        .HasForeignKey("friendAId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("road_runner.Models.FriendB", "receiver")
-                        .WithMany()
-                        .HasForeignKey("friendBId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.HasOne("road_runner.Models.User")
+                        .WithMany("received")
+                        .HasForeignKey("userId");
 
                     b.HasOne("road_runner.Models.User")
-                        .WithMany("friends")
-                        .HasForeignKey("userId");
-                });
-
-            modelBuilder.Entity("road_runner.Models.FriendA", b =>
-                {
-                    b.HasOne("road_runner.Models.User", "friend1")
-                        .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
-            modelBuilder.Entity("road_runner.Models.FriendB", b =>
-                {
-                    b.HasOne("road_runner.Models.User", "friend2")
-                        .WithMany()
-                        .HasForeignKey("userId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("sent")
+                        .HasForeignKey("userId1");
                 });
 
             modelBuilder.Entity("road_runner.Models.Runner", b =>
