@@ -132,9 +132,15 @@
 
 
     }
-
-
     </tbody>
     </table>
 
     </div>
+    @foreach(var user in ViewBag.pending)
+    {
+        @user.username
+        <form asp-action="Accept" asp-controller="Home" method="POST">
+            <input type="hidden" name="userId" value= @user.userId>
+            <input type="submit" value="Accept Request">
+        </form>
+    }

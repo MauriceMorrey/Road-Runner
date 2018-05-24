@@ -146,16 +146,21 @@ namespace road_runner.Controllers
             {
                 List<Trip> trips = _context.trips.Include(t => t.runners).ThenInclude(r => r.user).ToList();
                 List<Friend> friendships = _context.friends.Where(f => f.senderId == currentUser.userId || f.receiverId == currentUser.userId).ToList();
+                List<Friend> pending = _context.friends.Where(f => f.receiverId == currentUser.userId).Where(f => f.accepted == false).ToList();
                 List<User> friends = new List<User>();
                 foreach (var friend in friendships)
                 {
-                    if (friend.senderId == currentUser.userId)
+                    if(friend.accepted)
                     {
-                        friends.Add(_context.users.SingleOrDefault(u => friend.receiverId == u.userId));
-                    }
-                    else
-                    {
-                        friends.Add(_context.users.SingleOrDefault(u => friend.senderId == u.userId));
+                        if (friend.senderId == currentUser.userId)
+                        {
+                            friends.Add(_context.users.SingleOrDefault(u => friend.receiverId == u.userId));
+                        }
+                        else
+                        {
+                            friends.Add(_context.users.SingleOrDefault(u => friend.senderId == u.userId));
+                        }
+
                     }
                 }
                 foreach (var user in friends)
@@ -176,6 +181,12 @@ namespace road_runner.Controllers
                 // ViewBag.trip = trips;
                 ViewBag.user = currentUser;
                 ViewBag.runner = false;
+                ViewBag.pending = new List<User>();
+                foreach (var friend in pending)
+                {
+                    User u = _context.users.SingleOrDefault(f => f.userId == friend.senderId);
+                    ViewBag.pending.Add(u);
+                }
 
                 return View();
             }
@@ -184,6 +195,29 @@ namespace road_runner.Controllers
                 return RedirectToAction("Index");
             }
         }
+        [HttpPost]
+        [Route("accept")]
+        public IActionResult Accept(int userId)
+        {
+            int? uId = HttpContext.Session.GetInt32("userId");
+            var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)uId);
+            var anotherUser = _context.users.SingleOrDefault(u => u.userId == userId);
+            Friend friendOne = _context.friends.Where(f => f.receiverId == currentUser.userId).Where(f => f.senderId == anotherUser.userId).SingleOrDefault();
+            Friend friendTwo = _context.friends.Where(f => f.senderId == currentUser.userId).Where(f => f.receiverId == anotherUser.userId).SingleOrDefault();
+            if( friendOne == null ) 
+            {
+                friendTwo.accepted = true;
+            } 
+            else
+            {
+                friendOne.accepted = true;
+            }
+            _context.SaveChanges();
+            return RedirectToAction("Dashboard");
+
+        }
+
+
 
         [HttpPost]
         [Route("create")]
