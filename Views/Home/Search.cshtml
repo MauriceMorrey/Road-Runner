@@ -10,30 +10,23 @@
 </p>
 <hr>
 
-@*@ViewBag.Users @ViewBag.Users*@
-
-@if(ViewBag.Users.Count>0)
-       {
-           foreach(var user in ViewBag.Users)
-           {
-               <ul>
-                    <li>@user.first_name @user.last_name</li>
-                    <li>@user.username</li>
-               </ul> 
-           }
-       }
+<ul>
+    <li>@ViewBag.friend.first_name @ViewBag.friend.last_name</li>
+    <li>@ViewBag.friend.username</li>
+</ul> 
+       
 
 <hr>
 
-@*@if(ViewBag.thisUser != ViewBag.currentUser && ViewBag.friends == false)
+@if(ViewBag.friend != ViewBag.currentUser && ViewBag.friends == false)
 {
 <form asp-action="friend" asp-controller="Home" method="post">
-        <input type="hidden" value=@ViewBag.thisUser.userId name="friendBId">
+        <input type="hidden" value=@ViewBag.friend.userId name="friendBId">
         <input type="hidden" value=@ViewBag.currentUser.userId name="friendAId">
         <input class="btn btn-link" type="submit" value="Add friend">
 </form>
-} else if(ViewBag.thisUser == ViewBag.currentUser){
+} else if(ViewBag.friend == ViewBag.currentUser){
 <p><a href="#">Update your profile</a></p>
 } else {
-<p>You are already friends with @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name!</p>
-}*@
+<p>You are already friends with @ViewBag.friend.first_name @ViewBag.friend.last_name!</p>
+}

@@ -29,7 +29,7 @@ namespace road_runner.Controllers
         }
         [HttpGet]
         [Route("searchresults")]
-         public async Task<IActionResult> Search(string searchString)
+        public IActionResult Search(string searchString)
         {
             int? uId = HttpContext.Session.GetInt32("userId");
             var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)uId);
@@ -37,54 +37,25 @@ namespace road_runner.Controllers
             {
                 return RedirectToAction("Index");
             }
-            
-            var friends = from f in _context.users
-                         select f;
+            List<User> AllUsers = _context.users.ToList();
+            ViewBag.Users = AllUsers;
+            ViewBag.currentUser = currentUser;
 
             if (!String.IsNullOrEmpty(searchString))
             {
-                friends = friends.Where(u => u.username.Contains(searchString));
+                User friend = _context.users.SingleOrDefault(u => u.email.Contains(searchString));
+                System.Console.WriteLine("friends are here", friend);
+                ViewBag.friend = friend;
+                Friend friendship = _context.friends.Where(f => f.senderId == friend.userId).SingleOrDefault(f => f.receiverId == currentUser.userId);
+                Friend friendshipb = _context.friends.Where(f => f.receiverId == friend.userId).SingleOrDefault(f => f.senderId == currentUser.userId);
+                ViewBag.friends = false;
+                if (friendship != null || friendshipb != null)
+                {
+                    ViewBag.friends = true;
+                }
             }
 
-            List<User> AllUsers = _context.users.ToList();
-
-            // User thisUser = _context.users.Include(u => u.attended).Include(u => u.planned).SingleOrDefault(u => u.userId == userId);
-
-            // ViewBag.thisUser = thisUser;
-            ViewBag.Users = AllUsers;            
-            ViewBag.currentUser = currentUser;
-            // ViewBag.friends = false;
-            // // Console.WriteLine(thisUser.sent.Count);
-            // // Console.WriteLine(thisUser.received.Count);
-            // thisUser.sent = _context.friends.Where(f => f.senderId == thisUser.userId).ToList();
-            // thisUser.received = _context.friends.Where(f => f.receiverId == thisUser.userId).ToList();
-
-            // foreach (var friend in thisUser.sent)
-            // {
-            //     if (friend.receiverId == currentUser.userId)
-            //     {
-            //         ViewBag.friends = true;
-            //         // Console.WriteLine($"sender id is {friend.senderId}");
-            //         // Console.WriteLine($"receiver is {friend.receiverId}");
-            //         // Console.WriteLine($"current user is {currentUser.userId}");
-            //         // Console.WriteLine($"this user is {thisUser.userId}");
-
-
-            //     }
-            // }
-            // foreach (var friend in thisUser.received)
-            // {
-            //     if (friend.senderId == currentUser.userId)
-            //     {
-            //         ViewBag.friends = true;
-            //         // Console.WriteLine($"sender id is{friend.senderId}");
-            //         // Console.WriteLine($"receiver is{friend.receiverId}");
-            //         // Console.WriteLine($"current user is{currentUser.userId}");
-            //         // Console.WriteLine($"this user is{thisUser.userId}");
-            //     }
-            // }
-
-            return View(await friends.ToListAsync());
+            return View();
         }
 
         [HttpPost]
