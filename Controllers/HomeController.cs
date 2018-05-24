@@ -20,12 +20,71 @@ namespace road_runner.Controllers
             _context = context;
 
         }
-        
+
         [HttpGet]
         [Route("")]
         public IActionResult Index()
         {
             return View();
+        }
+        [HttpGet]
+        [Route("searchresults")]
+         public async Task<IActionResult> Search(string searchString)
+        {
+            int? uId = HttpContext.Session.GetInt32("userId");
+            var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)uId);
+            if (uId == null)
+            {
+                return RedirectToAction("Index");
+            }
+            
+            var friends = from f in _context.users
+                         select f;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                friends = friends.Where(u => u.username.Contains(searchString));
+            }
+
+            List<User> AllUsers = _context.users.ToList();
+
+            // User thisUser = _context.users.Include(u => u.attended).Include(u => u.planned).SingleOrDefault(u => u.userId == userId);
+
+            // ViewBag.thisUser = thisUser;
+            ViewBag.Users = AllUsers;            
+            ViewBag.currentUser = currentUser;
+            // ViewBag.friends = false;
+            // // Console.WriteLine(thisUser.sent.Count);
+            // // Console.WriteLine(thisUser.received.Count);
+            // thisUser.sent = _context.friends.Where(f => f.senderId == thisUser.userId).ToList();
+            // thisUser.received = _context.friends.Where(f => f.receiverId == thisUser.userId).ToList();
+
+            // foreach (var friend in thisUser.sent)
+            // {
+            //     if (friend.receiverId == currentUser.userId)
+            //     {
+            //         ViewBag.friends = true;
+            //         // Console.WriteLine($"sender id is {friend.senderId}");
+            //         // Console.WriteLine($"receiver is {friend.receiverId}");
+            //         // Console.WriteLine($"current user is {currentUser.userId}");
+            //         // Console.WriteLine($"this user is {thisUser.userId}");
+
+
+            //     }
+            // }
+            // foreach (var friend in thisUser.received)
+            // {
+            //     if (friend.senderId == currentUser.userId)
+            //     {
+            //         ViewBag.friends = true;
+            //         // Console.WriteLine($"sender id is{friend.senderId}");
+            //         // Console.WriteLine($"receiver is{friend.receiverId}");
+            //         // Console.WriteLine($"current user is{currentUser.userId}");
+            //         // Console.WriteLine($"this user is{thisUser.userId}");
+            //     }
+            // }
+
+            return View(await friends.ToListAsync());
         }
 
         [HttpPost]
@@ -36,6 +95,14 @@ namespace road_runner.Controllers
 
             if (ModelState.IsValid)
             {
+                User RegisterUser = _context.users.SingleOrDefault(i => i.email == Reg.email);
+                if (RegisterUser != null)
+                {
+                    // ViewBag.Message = "This email exists. Please use a different email.";
+                    ModelState.AddModelError("Reg.email", "This email exists. Please use a different email.");
+
+                    return View("Index");
+                }
                 PasswordHasher<Register> Hasher = new PasswordHasher<Register>();
                 Reg.password = Hasher.HashPassword(Reg, Reg.password);
 
@@ -109,9 +176,9 @@ namespace road_runner.Controllers
                 List<Trip> trips = _context.trips.Include(t => t.runners).ThenInclude(r => r.user).ToList();
                 List<Friend> friendships = _context.friends.Where(f => f.senderId == currentUser.userId || f.receiverId == currentUser.userId).ToList();
                 List<User> friends = new List<User>();
-                foreach(var friend in friendships)
+                foreach (var friend in friendships)
                 {
-                    if(friend.senderId == currentUser.userId)
+                    if (friend.senderId == currentUser.userId)
                     {
                         friends.Add(_context.users.SingleOrDefault(u => friend.receiverId == u.userId));
                     }
@@ -120,7 +187,7 @@ namespace road_runner.Controllers
                         friends.Add(_context.users.SingleOrDefault(u => friend.senderId == u.userId));
                     }
                 }
-                foreach(var user in friends)
+                foreach (var user in friends)
                 {
                     user.planned = _context.trips.Where(t => t.userId == user.userId).ToList();
                 }
@@ -277,7 +344,7 @@ namespace road_runner.Controllers
                 return RedirectToAction("Index");
             }
             User thisUser = _context.users.Include(u => u.attended).Include(u => u.planned).SingleOrDefault(u => u.userId == userId);
-            
+
             ViewBag.thisUser = thisUser;
             ViewBag.currentUser = currentUser;
             ViewBag.friends = false;
@@ -291,11 +358,11 @@ namespace road_runner.Controllers
                 if (friend.receiverId == currentUser.userId)
                 {
                     ViewBag.friends = true;
-                    Console.WriteLine($"sender id is{friend.senderId}");
-                    Console.WriteLine($"receiver is{friend.receiverId}");
-                    Console.WriteLine($"current user is{currentUser.userId}");
-                    Console.WriteLine($"this user is{thisUser.userId}");
-                    
+                    Console.WriteLine($"sender id is {friend.senderId}");
+                    Console.WriteLine($"receiver is {friend.receiverId}");
+                    Console.WriteLine($"current user is {currentUser.userId}");
+                    Console.WriteLine($"this user is {thisUser.userId}");
+
 
                 }
             }
@@ -310,8 +377,8 @@ namespace road_runner.Controllers
                     Console.WriteLine($"this user is{thisUser.userId}");
                 }
             }
-        
-            
+
+
             Console.WriteLine(ViewBag.friends);
             return View("User");
         }
@@ -322,24 +389,24 @@ namespace road_runner.Controllers
         {
             int? userId = HttpContext.Session.GetInt32("userId");
             var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)userId);
-           
-           if(friendBId == currentUser.userId)
-           {
-               return RedirectToAction("Dashboard");
-           }
-           Friend friend = new Friend()
-           {
-               senderId = currentUser.userId,
-               receiverId = friendBId,
-               accepted = false
-           };
 
-           _context.Add(friend);
-           _context.SaveChanges();
-       
+            if (friendBId == currentUser.userId)
+            {
+                return RedirectToAction("Dashboard");
+            }
+            Friend friend = new Friend()
+            {
+                senderId = currentUser.userId,
+                receiverId = friendBId,
+                accepted = false
+            };
+
+            _context.Add(friend);
+            _context.SaveChanges();
+
             return RedirectToAction("Dashboard");
         }
-    
+
 
         public IActionResult Error()
         {
