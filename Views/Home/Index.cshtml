@@ -5,60 +5,92 @@
 @model road_runner.Models.UserViewModel
 
 
-<div class="row">
-    <div class="col">
-        <h1>Registration</h1>
-        <form asp-action="Register" asp-controller="Home" method="post">
-        <div class="form-group">
-            <label for="Reg.first_name">First Name:</label>
-            <input type="text" class="form-control" asp-for="Reg.first_name">
-            <span class="text-danger" asp-validation-for="Reg.first_name"></span>
-        </div>
-        <div class="form-group">
-            <label for="Reg.last_name">Last Name:</label>
-            <input type="text" class="form-control" asp-for="Reg.last_name">
-            <span class="text-danger" asp-validation-for="Reg.last_name"></span>
-        </div>
-        <div class="form-group">
-            <label for="Reg.username">Username:</label>
-            <input type="text" class="form-control" asp-for="Reg.username">
-            <span class="text-danger" asp-validation-for="Reg.username"></span>
-        </div>
-        <div class="form-group">
-            <label for="Reg.email">Email:</label>
-            <input type="text" class="form-control" asp-for="Reg.email">
-            <span class="text-danger" asp-validation-for="Reg.email"></span>
-        </div>
-        <div class="form-group">
-            <label for="Reg.password">Password:</label>
-            <input type="password" class="form-control" asp-for="Reg.password">
-            <span class="text-danger" asp-validation-for="Reg.password"></span>
-        </div>
-        <div class="form-group">
-            <label for="Reg.cw_password">Confirm Password:</label>
-            <input type="password" class="form-control" asp-for="Reg.cw_password">
-            <span class="text-danger" asp-validation-for="Reg.cw_password"></span>
-        </div>
+ 
 
-        <button type="submit" class="btn btn-primary">Register</button>
-        </form><br>
-    </div>
+    <body>
+        <div class="container">
+           
+            <header>
+                <h1 id="marginr"  style="color:yellow;">Welcome to Road Runner!</h1>
+				 <h1 style="color:yellow;">A traveler's app.</h1>
+            </header>
+            <section>				
+                <div id="container_demo" >
+                    <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+                    <a class="hiddenanchor" id="toregister"></a>
+                    <a class="hiddenanchor" id="tologin"></a>
+                    <div id="wrapper">
+                        <div id="login" class="animate form">
+                            <h1>Login</h1>
+                            <form asp-action="Login" asp-controller="Home" method="post">
+                             <div class="form-group">
+                                 <label for="email">Email:</label>
+                                 <input class="form-control" asp-for="Log.email" placeholder="mymail@mail.com">
+                                 <span class="text-danger" asp-validation-for="Log.email"></span>
+                         </div>
+                     <div class="form-group">
+                            <label for="password">Password:</label>
+                             <input class="form-control" asp-for="Log.password" placeholder="eg. X8df!90EO">
+                            <span class="text-danger" asp-validation-for="Log.password"></span>
+                        </div>
 
-    <div class="col">
-        <h1>Login</h1>
-        <form asp-action="Login" asp-controller="Home" method="post">
-        <div class="form-group">
-            <label for="email">Email:</label>
-            <input class="form-control" asp-for="Log.email">
-            <span class="text-danger" asp-validation-for="Log.email"></span>
-        </div>
-        <div class="form-group">
-            <label for="password">Password:</label>
-            <input class="form-control" asp-for="Log.password">
-            <span class="text-danger" asp-validation-for="Log.password"></span>
-        </div>
+                            <button type="submit" class="btn btn-primary">Login</button>
+                                </form>
+                                <p class="change_link">
+									Not a Road Runner yet ?
+									<a href="#toregister" class="to_register">Join us</a>
+								</p>
+                          
+                        </div>
 
-        <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-    </div>
-</div>
+                        <div id="register" class="animate form">
+                                <h1>Registration</h1>
+                                <form asp-action="Register" asp-controller="Home" method="post">
+                                <div class="form-group">
+                                    <label for="Reg.first_name">First Name:</label>
+                                    <input type="text" class="form-control-sm" asp-for="Reg.first_name" placeholder="Johnny">
+                                    <span class="text-danger" asp-validation-for="Reg.first_name"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Reg.last_name">Last Name:</label>
+                                    <input type="text" class="form-control-sm"  asp-for="Reg.last_name" placeholder="Roadrunner">
+                                    <span class="text-danger" asp-validation-for="Reg.last_name"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Reg.username">Username:</label>
+                                    <input type="text" class="form-control-sm" asp-for="Reg.username" placeholder="eg. roadrunner92">
+                                    <span class="text-danger" asp-validation-for="Reg.username"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Reg.email">Email:</label>
+                                    <input type="text" class="form-control-sm" asp-for="Reg.email" placeholder="mymail@mail.com">
+                                    <span class="text-danger" asp-validation-for="Reg.email"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Reg.password">Password:</label>
+                                    <input type="password" class="form-control-sm" asp-for="Reg.password" placeholder="eg. X8df!90EO">
+                                    <span class="text-danger" asp-validation-for="Reg.password"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Reg.cw_password">Confirm Password:</label>
+                                    <input type="password" class="form-control-sm" asp-for="Reg.cw_password" placeholder="eg. X8df!90EO">
+                                    <span class="text-danger" asp-validation-for="Reg.cw_password"></span>
+                                </div>
+                        
+                                <button type="submit" class="btn btn-primary">Register</button>
+                                </form>
+                                <p class="change_link">  
+									Already a Road Runner? 
+									<a href="#tologin" class="to_register"> Go and log in </a>
+								</p>
+                                 </div>
+								</p>
+                               
+                            
+                        </div>
+						
+                    </div>
+                </div>  
+            </section>
+        </div>
+    </body>
