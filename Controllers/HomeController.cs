@@ -27,24 +27,35 @@ namespace road_runner.Controllers
         {
             return View();
         }
+
         [HttpGet]
         [Route("searchresults")]
-        public IActionResult Search(string searchString)
+        public IActionResult Search(string searchString, string email)
         {
+            ViewBag.Message = "";
             int? uId = HttpContext.Session.GetInt32("userId");
             var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)uId);
             if (uId == null)
             {
                 return RedirectToAction("Index");
             }
+            
+            User search = _context.users.SingleOrDefault(i => i.email == email);
+            if (search != null)
+            {
+                ViewBag.Message = "This email exists. Please use a different email.";
+                // ModelState.AddModelError("searchString", "This email exists. Please use a different email.");
+
+                return View("Dashboard");
+            }
+
             List<User> AllUsers = _context.users.ToList();
             ViewBag.Users = AllUsers;
             ViewBag.currentUser = currentUser;
-
-            if (!String.IsNullOrEmpty(searchString))
-            {
                 User friend = _context.users.SingleOrDefault(u => u.email.Contains(searchString));
-                System.Console.WriteLine("friends are here", friend);
+
+            if (friend != null)
+            {
                 ViewBag.friend = friend;
                 Friend friendship = _context.friends.Where(f => f.senderId == friend.userId).SingleOrDefault(f => f.receiverId == currentUser.userId);
                 Friend friendshipb = _context.friends.Where(f => f.receiverId == friend.userId).SingleOrDefault(f => f.senderId == currentUser.userId);
@@ -53,6 +64,8 @@ namespace road_runner.Controllers
                 {
                     ViewBag.friends = true;
                 }
+            }else{
+                return RedirectToAction("Dashboard");
             }
 
             return View();
@@ -334,7 +347,7 @@ namespace road_runner.Controllers
             User currentUser = _context.users.SingleOrDefault(u => u.userId == userId);
 
             Trip trip = _context.trips.Where(w => w.tripId == tripId).Include(p => p.runners).ThenInclude(v => v.user).SingleOrDefault();
-            List<Post> ideasList = _context.posts.Include(p => p.creator).Include(p => p.likes).OrderByDescending(p => p.created_at).ToList();
+            List<Post> ideasList = _context.posts.Where(p => p.tripId == tripId).Include(p => p.creator).Include(p => p.likes).OrderByDescending(p => p.created_at).ToList();
         
             ViewBag.current = currentUser;
             ViewBag.ideas = ideasList;

@@ -3,10 +3,9 @@
 }
 @model road_runner.Models.TripViewModel
 
-<p class="text-right">
-    <a href="/dashboard" class="btn btn-link">Dashboard</a>
-    <a href="/logout" class="btn btn-link">Logout</a>
-</p>
+    <a href="/logout" style="margin-left: 10px;"class="btn btn-primary pull-right">Logout</a>
+    <a href="/dashboard" style="margin-left: 10px;"class="btn btn-primary pull-right">Dashboard</a>
+
 
 <h1>Create New Trip!</h1><br>
 <form asp-action="Create" asp-controller="Home" method="post">
