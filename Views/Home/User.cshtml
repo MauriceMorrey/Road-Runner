@@ -2,6 +2,13 @@
     ViewData["Title"] = "User Page";
 }
 
+<p class="text-right">
+    <a href="/dashboard" class="btn btn-link">Dashboard</a>
+    <a href="/logout" class="btn btn-link">Logout</a>
+</p>
+<hr>
+
+
 @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name
 
 <hr>
@@ -13,4 +20,9 @@
         <input type="hidden" value=@ViewBag.currentUser.userId name="friendAId">
         <input class="btn btn-link" type="submit" value="Add friend">
 </form>
+} else if(ViewBag.thisUser == ViewBag.currentUser){
+<p><a href="#">Update your profile</a></p>
+} else {
+<p>You are already friends with @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name!</p>
 }
+

@@ -1,0 +1,32 @@
+@{
+    ViewData["Title"] = "Search Results Page";
+}
+
+<h1>this is the search results page.</h1>
+
+<p class="text-right">
+    <a href="/dashboard" class="btn btn-link">Dashboard</a>
+    <a href="/logout" class="btn btn-link">Logout</a>
+</p>
+<hr>
+
+<ul>
+    <li>@ViewBag.friend.first_name @ViewBag.friend.last_name</li>
+    <li>@ViewBag.friend.username</li>
+</ul> 
+       
+
+<hr>
+
+@if(ViewBag.friend != ViewBag.currentUser && ViewBag.friends == false)
+{
+<form asp-action="friend" asp-controller="Home" method="post">
+        <input type="hidden" value=@ViewBag.friend.userId name="friendBId">
+        <input type="hidden" value=@ViewBag.currentUser.userId name="friendAId">
+        <input class="btn btn-link" type="submit" value="Add friend">
+</form>
+} else if(ViewBag.friend == ViewBag.currentUser){
+<p><a href="#">Update your profile</a></p>
+} else {
+<p>You are already friends with @ViewBag.friend.first_name @ViewBag.friend.last_name!</p>
+}

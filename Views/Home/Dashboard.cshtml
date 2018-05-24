@@ -3,14 +3,22 @@
 }
 @{bool runner = ViewBag.runner;}
 
-<p class="text-right">
-    <a class="btn btn-link" href="/logout">Logout</a>
-</p>
+
+<a style="margin-left: 10px;" class="btn btn-primary pull-right" href="/logout">Logout</a>
+<form class="form-inline mr-auto pull-right" asp-controller="Home" asp-action="Search" method="GET" >
+    <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Search friends.." aria-label="Search">
+    <button class="btn btn-success" type="submit">
+        <span class="glyphicon glyphicon-search"></span>
+    </button>
+</form>
+
+
+
 
 <h2>Hello, <span style="color: rgb(13, 143, 143)">@ViewBag.user.username</span>!</h2><br>
 <div class="container">
-<h4>Are you ready for next <a href="create">trip</a>?</h4><hr>
-<h1>Your Trip's</h1>
+<h4>Are you ready for your next <a href="create">trip</a>?</h4><hr>
+<h1>Your Trips</h1>
 <table class="table table-dark">
   <thead>
     <tr>
@@ -26,17 +34,17 @@
     @foreach (var trip in ViewBag.user.planned)
     {
       <tr>
-      <td><a href="/show/@trip.tripId">@trip.destination</a></td>
-      <td>@trip.start_point</td>
-      <td>@trip.start_date.ToString("MMM dd, yyyy hh:mm tt")</td>
-      <td>@trip.end_date.ToString("MMM dd, yyyy hh:mm tt")</td>
-      <td>@trip.runners.Count</td>
-            <td>
-                <form asp-action="delete" asp-controller="Home" method="post">
-                    <input type="hidden" value=@trip.tripId name="tripId">
-                    <input class="btn btn-link" type="submit" value="Delete">
-                </form>
-            </td>
+        <td><a href="/show/@trip.tripId">@trip.destination</a></td>
+        <td>@trip.start_point</td>
+        <td>@trip.start_date.ToString("MMM dd, yyyy hh:mm tt")</td>
+        <td>@trip.end_date.ToString("MMM dd, yyyy hh:mm tt")</td>
+        <td>@trip.runners.Count</td>
+                <td>
+                    <form asp-action="delete" asp-controller="Home" method="post">
+                        <input type="hidden" value=@trip.tripId name="tripId">
+                        <input class="btn btn-link" type="submit" value="Delete">
+                    </form>
+                </td>
         
 
     </tr>
@@ -71,7 +79,7 @@
 
 
 
-    <h1>Your Friend's Trip's</h1>
+    <h1>Road Runners you may know..</h1>
 <table class="table table-dark">
   <thead>
     <tr>
@@ -106,7 +114,7 @@
             <td>@ftrip.start_point</td>
             <td>@ftrip.start_date.ToString("MMM dd, yyyy hh:mm tt")</td>
             <td>@ftrip.end_date.ToString("MMM dd, yyyy hh:mm tt")</td>
-            <td>@ftrip.planner.username</td>
+            <td><a href="/user/@ftrip.planner.userId">@ftrip.planner.username</a></td>
             <td>@ftrip.runners.Count</td>
 
             <td>
