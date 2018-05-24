@@ -356,15 +356,11 @@ namespace road_runner.Controllers
                 return RedirectToAction("Index");
             }
             User thisUser = _context.users.Include(u => u.attended).Include(u => u.planned).SingleOrDefault(u => u.userId == userId);
-<<<<<<< HEAD
+
             List<Friend> AllFriends = _context.friends.ToList();
             
             ViewBag.friendy = AllFriends;
-            
-        
-=======
 
->>>>>>> master
             ViewBag.thisUser = thisUser;
             ViewBag.currentUser = currentUser;
             ViewBag.friends = false;
@@ -377,14 +373,6 @@ namespace road_runner.Controllers
                 if (friend.receiverId == currentUser.userId)
                 {
                     ViewBag.friends = true;
-<<<<<<< HEAD
-=======
-                    Console.WriteLine($"sender id is {friend.senderId}");
-                    Console.WriteLine($"receiver is {friend.receiverId}");
-                    Console.WriteLine($"current user is {currentUser.userId}");
-                    Console.WriteLine($"this user is {thisUser.userId}");
-
->>>>>>> master
 
                 }
             }
@@ -408,7 +396,6 @@ namespace road_runner.Controllers
         {
             int? userId = HttpContext.Session.GetInt32("userId");
             var currentUser = _context.users.SingleOrDefault(u => u.userId == (int)userId);
-<<<<<<< HEAD
            
            if(friendBId == currentUser.userId)
            {
@@ -505,26 +492,7 @@ namespace road_runner.Controllers
             return RedirectToAction("Show" , new { tripId = tripId});
         }
     
-=======
 
-            if (friendBId == currentUser.userId)
-            {
-                return RedirectToAction("Dashboard");
-            }
-            Friend friend = new Friend()
-            {
-                senderId = currentUser.userId,
-                receiverId = friendBId,
-                accepted = false
-            };
-
-            _context.Add(friend);
-            _context.SaveChanges();
-
-            return RedirectToAction("Dashboard");
-        }
-
->>>>>>> master
 
         public IActionResult Error()
         {

@@ -4,19 +4,7 @@
 <h1>@ViewBag.thisUser.username</h1>
 <h3>Name: @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name</h3>
 
-<<<<<<< HEAD
  
-=======
-<p class="text-right">
-    <a href="/dashboard" class="btn btn-link">Dashboard</a>
-    <a href="/logout" class="btn btn-link">Logout</a>
-</p>
-<hr>
-
-
-@ViewBag.thisUser.first_name @ViewBag.thisUser.last_name
-
->>>>>>> master
 <hr>
 
 
@@ -30,7 +18,6 @@
 } else if(ViewBag.thisUser == ViewBag.currentUser){
 <p><a href="#">Update your profile</a></p>
 } else {
-<<<<<<< HEAD
   @foreach (var f in @ViewBag.friendy)
   
     {
@@ -54,8 +41,5 @@
     
 }
     
-=======
-<p>You are already friends with @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name!</p>
->>>>>>> master
 }
 
