@@ -14,6 +14,18 @@ by @ViewBag.t.planner.username
 
 <h4>Description: @ViewBag.t.description</h4><br>
 
+<table border="1">
+  <tr>
+    <td valign="top">
+      <div id="map" style="width: 600px; height: 500px;"></div>
+    </td>
+    
+  </tr>
+</table>
+<input type="hidden" id="from" value=@ViewBag.t.start_point />
+<input type="hidden" id="to" value=@ViewBag.t.destination />
+<br>
+
 <h4>Runners:</h4>   
     @foreach (var user in @ViewBag.t.runners)
     {   
