@@ -1,17 +1,10 @@
 @{
     ViewData["Title"] = "User Page";
 }
-    <a href="/logout" style="margin-left: 10px;"class="btn btn-primary pull-right">Logout</a>
-    <a href="/dashboard" style="margin-left: 10px;"class="btn btn-primary pull-right">Dashboard</a>
-   
 
+@ViewBag.thisUser.first_name @ViewBag.thisUser.last_name
 
-<h1>@ViewBag.thisUser.username</h1>
-<h3>Name: @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name</h3>
-
- 
 <hr>
-
 
 @if(ViewBag.thisUser != ViewBag.currentUser && ViewBag.friends == false)
 {
@@ -20,31 +13,4 @@
         <input type="hidden" value=@ViewBag.currentUser.userId name="friendAId">
         <input class="btn btn-link" type="submit" value="Add friend">
 </form>
-} else if(ViewBag.thisUser == ViewBag.currentUser){
-
-} else {
-  @foreach (var f in @ViewBag.friendy)
-    
-    {
-        @if(f.senderId == ViewBag.currentUser.userId && f.receiverId == ViewBag.thisUser.userId)
-        {
-    <form asp-action="removefriend" asp-controller="Home" method="post">
-    
-        <input type="hidden" value=@f.friendId name="friendId">
-        <input class="btn btn-link" type="submit" value="Remove friend">
-        
-    </form>
-    } else if (f.receiverId == ViewBag.currentUser.userId && f.senderId == ViewBag.thisUser.userId)
-    {
-        <form asp-action="removefriend" asp-controller="Home" method="post">
-    
-        <input type="hidden" value=@f.friendId name="friendId">
-        <input class="btn btn-link" type="submit" value="Remove friend">
-        
-    </form>
-    }
-    
 }
-    
-}
-
