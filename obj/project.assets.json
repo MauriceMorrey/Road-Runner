@@ -12788,11 +12788,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\road_runner.csproj",
+      "projectUniqueName": "C:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\road_runner.csproj",
       "projectName": "road_runner",
-      "projectPath": "c:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\road_runner.csproj",
+      "projectPath": "C:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\road_runner.csproj",
       "packagesPath": "C:\\Users\\mac\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\obj\\",
+      "outputPath": "C:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
