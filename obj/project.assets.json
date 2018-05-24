@@ -12788,11 +12788,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "C:\\Users\\Owner\\Desktop\\c#proj\\Road-Runner\\road_runner.csproj",
       "projectName": "road_runner",
       "projectPath": "C:\\Users\\Owner\\Desktop\\c#proj\\Road-Runner\\road_runner.csproj",
       "packagesPath": "C:\\Users\\Owner\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Owner\\Desktop\\c#proj\\Road-Runner\\obj\\",
+=======
+      "projectUniqueName": "C:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\road_runner.csproj",
+      "projectName": "road_runner",
+      "projectPath": "C:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\road_runner.csproj",
+      "packagesPath": "C:\\Users\\mac\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\mac\\Desktop\\DojoAssignments\\C#\\ENTITYFRAMEWORKCORE\\RoadRunner\\obj\\",
+>>>>>>> master
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
