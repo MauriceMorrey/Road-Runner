@@ -11,8 +11,8 @@ using System;
 namespace road_runner.Migrations
 {
     [DbContext(typeof(RoadRunnerContext))]
-    [Migration("20180523185054_newuuuva")]
-    partial class newuuuva
+    [Migration("20180524175905_newok")]
+    partial class newok
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -69,6 +69,54 @@ namespace road_runner.Migrations
                     b.HasIndex("userId1");
 
                     b.ToTable("friends");
+                });
+
+            modelBuilder.Entity("road_runner.Models.Like", b =>
+                {
+                    b.Property<int>("likeId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime>("created_at");
+
+                    b.Property<int>("postId");
+
+                    b.Property<DateTime>("updated_at");
+
+                    b.Property<int>("userId");
+
+                    b.HasKey("likeId");
+
+                    b.HasIndex("postId");
+
+                    b.HasIndex("userId");
+
+                    b.ToTable("likes");
+                });
+
+            modelBuilder.Entity("road_runner.Models.Post", b =>
+                {
+                    b.Property<int>("postId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("content");
+
+                    b.Property<DateTime>("created_at");
+
+                    b.Property<int>("creatorId");
+
+                    b.Property<bool>("currentUser");
+
+                    b.Property<int>("tripId");
+
+                    b.Property<DateTime>("updated_at");
+
+                    b.HasKey("postId");
+
+                    b.HasIndex("creatorId");
+
+                    b.HasIndex("tripId");
+
+                    b.ToTable("posts");
                 });
 
             modelBuilder.Entity("road_runner.Models.Runner", b =>
@@ -163,6 +211,32 @@ namespace road_runner.Migrations
                     b.HasOne("road_runner.Models.User")
                         .WithMany("sent")
                         .HasForeignKey("userId1");
+                });
+
+            modelBuilder.Entity("road_runner.Models.Like", b =>
+                {
+                    b.HasOne("road_runner.Models.Post", "post")
+                        .WithMany("likes")
+                        .HasForeignKey("postId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("road_runner.Models.User", "user")
+                        .WithMany("liked")
+                        .HasForeignKey("userId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("road_runner.Models.Post", b =>
+                {
+                    b.HasOne("road_runner.Models.User", "creator")
+                        .WithMany("created")
+                        .HasForeignKey("creatorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("road_runner.Models.Trip", "trip")
+                        .WithMany("posts")
+                        .HasForeignKey("tripId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("road_runner.Models.Runner", b =>

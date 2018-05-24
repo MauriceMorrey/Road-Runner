@@ -258,7 +258,14 @@ namespace road_runner.Controllers
         public IActionResult Show(int tripId)
         {
 
+            int? userId = HttpContext.Session.GetInt32("userId");
+            User currentUser = _context.users.SingleOrDefault(u => u.userId == userId);
+
             Trip trip = _context.trips.Where(w => w.tripId == tripId).Include(p => p.runners).ThenInclude(v => v.user).SingleOrDefault();
+            List<Post> ideasList = _context.posts.Include(p => p.creator).Include(p => p.likes).OrderByDescending(p => p.created_at).ToList();
+        
+            ViewBag.current = currentUser;
+            ViewBag.ideas = ideasList;
             ViewBag.t = trip;
 
             return View();
@@ -266,7 +273,7 @@ namespace road_runner.Controllers
 
         [HttpGet]
         [Route("user/{userId}")]
-        public IActionResult UserPage(int userId)
+        public IActionResult UserPage(int userId, int friendId)
         {
 
             int? uId = HttpContext.Session.GetInt32("userId");
@@ -277,12 +284,15 @@ namespace road_runner.Controllers
                 return RedirectToAction("Index");
             }
             User thisUser = _context.users.Include(u => u.attended).Include(u => u.planned).SingleOrDefault(u => u.userId == userId);
+            List<Friend> AllFriends = _context.friends.ToList();
             
+            ViewBag.friendy = AllFriends;
+            
+        
             ViewBag.thisUser = thisUser;
             ViewBag.currentUser = currentUser;
             ViewBag.friends = false;
-            Console.WriteLine(thisUser.sent.Count);
-            Console.WriteLine(thisUser.received.Count);
+            
             thisUser.sent = _context.friends.Where(f => f.senderId == thisUser.userId).ToList();
             thisUser.received = _context.friends.Where(f => f.receiverId == thisUser.userId).ToList();
 
@@ -291,11 +301,6 @@ namespace road_runner.Controllers
                 if (friend.receiverId == currentUser.userId)
                 {
                     ViewBag.friends = true;
-                    Console.WriteLine($"sender id is{friend.senderId}");
-                    Console.WriteLine($"receiver is{friend.receiverId}");
-                    Console.WriteLine($"current user is{currentUser.userId}");
-                    Console.WriteLine($"this user is{thisUser.userId}");
-                    
 
                 }
             }
@@ -304,10 +309,7 @@ namespace road_runner.Controllers
                 if (friend.senderId == currentUser.userId)
                 {
                     ViewBag.friends = true;
-                    Console.WriteLine($"sender id is{friend.senderId}");
-                    Console.WriteLine($"receiver is{friend.receiverId}");
-                    Console.WriteLine($"current user is{currentUser.userId}");
-                    Console.WriteLine($"this user is{thisUser.userId}");
+        
                 }
             }
         
@@ -333,11 +335,89 @@ namespace road_runner.Controllers
                receiverId = friendBId,
                accepted = false
            };
+           
 
            _context.Add(friend);
            _context.SaveChanges();
        
             return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        [Route("removefriend")]
+        public IActionResult RemoveFriend(int friendId, int receiverId)
+        { 
+            Friend friendy = _context.friends.SingleOrDefault(f => f.friendId == friendId);
+            
+                if (friendy != null)               
+                {
+                _context.friends.Remove(friendy);
+                _context.SaveChanges();
+
+                return RedirectToAction("Dashboard");
+                }   
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        [Route("deletepost")]
+        public IActionResult DeletePost(int postId, int tripId){
+            int? userId = HttpContext.Session.GetInt32("userId");
+
+            if(userId == null){
+                return RedirectToAction("Index");
+            }
+            
+            Post removePost = _context.posts.SingleOrDefault(p => p.postId == postId);
+
+            if((int)userId == removePost.creatorId){
+                _context.posts.Remove(removePost);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Show" , new { tripId = tripId });
+        }
+
+        [HttpGet]
+        [Route("like/{postId}")]
+        public IActionResult Like(int postId){
+            int? userId = HttpContext.Session.GetInt32("userId");
+
+            if(userId == null){
+                return RedirectToAction("Index");
+            }
+
+            Like newLike = new Like(){
+                userId = (int) userId,
+                postId = postId,
+                };
+
+            _context.Add(newLike);
+            _context.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
+        [HttpPost]
+        [Route("createpost")]
+        public IActionResult CreatePost(string content, int tripId){
+
+            int? userId = HttpContext.Session.GetInt32("userId");
+
+            if(userId == null){
+                return RedirectToAction("Index");
+            }
+
+            Post newPost = new Post(){
+                tripId = tripId,
+                content = content,
+                creatorId = (int)userId,
+            };
+
+            _context.Add(newPost);
+            _context.SaveChanges();
+
+            return RedirectToAction("Show" , new { tripId = tripId});
         }
     
 

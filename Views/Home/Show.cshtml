@@ -1,6 +1,7 @@
 @{
     ViewData["Title"] = "Deatil's Page";
 }
+@{bool runner = false;}
 
 <p class="text-right">
     <a href="/dashboard" class="btn btn-link">Dashboard</a>
@@ -17,11 +18,70 @@ by @ViewBag.t.planner.username
 <h4>Runners:</h4>   
     @foreach (var user in @ViewBag.t.runners)
     {   
+        @if(user.userId == ViewBag.current.userId)
         {
-        <h5><a href="/user/@user.userId">@user.user.first_name @user.user.last_name</a></h5>
+           runner = true;
         }
+        {
+        <h5><a href="/user/@user.userId">@user.user.username</a></h5>
+        }
+        
        
     } 
+<hr>
+
+
+@if(runner == true)
+{
+<h4>Trip Messenger:</h4>
+<div class="container">
+    <form asp-action="CreatePost" asp-controller="Home" method="post">
+        <div class="row">
+            
+            <textarea name="content" cols="60" rows="2" placeholder="Your message here.."></textarea>
+            <input type="hidden" value=@ViewBag.t.tripId name="tripId">
+            <input type="submit" value="Post!" name="submit">
+
+        </div>
+    </form>
+
+    <div>
+    
+
+
+
+
+        <div class="pre-scrollable">
+            @foreach (var v in ViewBag.ideas)
+            {
+                <div>
+                    <h4> <span class="text-danger">@v.creator.username says</span>: @v.content</h4>
+                    <p> @v.created_at</p>
+                    @if(v.creator.userId == ViewBag.current.userId){            
+
+                         
+                        <form asp-action="DeletePost" asp-controller="Home" method="post">
+                
+                    <input type="hidden" value=@v.tripId name="tripId">
+                    <input type="hidden" value=@v.postId name="postId">
+                    <input class="btn btn-link" type="submit" value="Delete">
+                    
+                        </form>
+                    }
+
+                </div>
+                <br>
+            
+            
+            }
+    
+        </div>
+
+    </div>
+</div>
+}
+
+
     
    
 

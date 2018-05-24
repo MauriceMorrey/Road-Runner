@@ -24,6 +24,8 @@ namespace road_runner.Models {
         public List<Runner> attended { get;set; }
         public List<Friend> sent { get;set; }
         public List<Friend> received { get;set; }
+        public List<Like> liked { get;set; }
+        public List<Post> created { get;set; }
 
         public User(){
             created_at = DateTime.Now;
@@ -32,6 +34,8 @@ namespace road_runner.Models {
             attended = new List<Runner>();
             sent = new List<Friend>();
             received = new List<Friend>();
+            liked = new List<Like>();
+            created = new List<Post>();
         }
 
 	}

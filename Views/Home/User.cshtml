@@ -1,10 +1,12 @@
 @{
     ViewData["Title"] = "User Page";
 }
+<h1>@ViewBag.thisUser.username</h1>
+<h3>Name: @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name</h3>
 
-@ViewBag.thisUser.first_name @ViewBag.thisUser.last_name
-
+ 
 <hr>
+
 
 @if(ViewBag.thisUser != ViewBag.currentUser && ViewBag.friends == false)
 {
@@ -16,6 +18,28 @@
 } else if(ViewBag.thisUser == ViewBag.currentUser){
 <p><a href="#">Update your profile</a></p>
 } else {
-<p>You are already friends!</p>
+  @foreach (var f in @ViewBag.friendy)
+  
+    {
+        @if(f.senderId == ViewBag.currentUser.userId && f.receiverId == ViewBag.thisUser.userId)
+        {
+    <form asp-action="removefriend" asp-controller="Home" method="post">
+    
+        <input type="hidden" value=@f.friendId name="friendId">
+        <input class="btn btn-link" type="submit" value="Remove friend">
+        
+    </form>
+    } else if (f.receiverId == ViewBag.currentUser.userId && f.senderId == ViewBag.thisUser.userId)
+    {
+        <form asp-action="removefriend" asp-controller="Home" method="post">
+    
+        <input type="hidden" value=@f.friendId name="friendId">
+        <input class="btn btn-link" type="submit" value="Remove friend">
+        
+    </form>
+    }
+    
+}
+    
 }
 

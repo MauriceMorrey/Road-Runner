@@ -26,11 +26,13 @@ namespace road_runner.Models {
 
         public List<Runner> runners { get; set; }
         public List<Feature> features { get; set; }
+        public List<Post> posts {get;set;}
 
         public Trip()
         {
             runners = new List<Runner>();
             features = new List<Feature>();
+            posts = new List<Post>();
         }
     
     }
