@@ -6,8 +6,10 @@
 
 
  
-
     <body>
+         <link rel="stylesheet" href="~/css/testroad.css" />
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<link href="https://fonts.googleapis.com/css?family=Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
         <div class="container">
            
             <header>
@@ -25,7 +27,7 @@
                             <form asp-action="Login" asp-controller="Home" method="post">
                              <div class="form-group">
                                  <label for="email">Email:</label>
-                                 <input class="form-control" asp-for="Log.email" placeholder="mymail@mail.com">
+                                 <input class="form-control" asp-for="Log.email" placeholder="eg. mymail@mail.com">
                                  <span class="text-danger" asp-validation-for="Log.email"></span>
                          </div>
                      <div class="form-group">
@@ -48,12 +50,12 @@
                                 <form asp-action="Register" asp-controller="Home" method="post">
                                 <div class="form-group">
                                     <label for="Reg.first_name">First Name:</label>
-                                    <input type="text" class="form-control-sm" asp-for="Reg.first_name" placeholder="Johnny">
+                                    <input type="text" class="form-control-sm" asp-for="Reg.first_name" placeholder="eg. Johnny">
                                     <span class="text-danger" asp-validation-for="Reg.first_name"></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="Reg.last_name">Last Name:</label>
-                                    <input type="text" class="form-control-sm"  asp-for="Reg.last_name" placeholder="Roadrunner">
+                                    <input type="text" class="form-control-sm"  asp-for="Reg.last_name" placeholder="eg. Roadrunner">
                                     <span class="text-danger" asp-validation-for="Reg.last_name"></span>
                                 </div>
                                 <div class="form-group">
@@ -63,7 +65,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="Reg.email">Email:</label>
-                                    <input type="text" class="form-control-sm" asp-for="Reg.email" placeholder="mymail@mail.com">
+                                    <input type="text" class="form-control-sm" asp-for="Reg.email" placeholder="eg. mymail@mail.com">
                                     <span class="text-danger" asp-validation-for="Reg.email"></span>
                                 </div>
                                 <div class="form-group">
@@ -89,8 +91,8 @@
                             
                         </div>
 						
-                    </div>
-                </div>  
+                    <!-- </div>
+                </div>   -->
             </section>
         </div>
     </body>

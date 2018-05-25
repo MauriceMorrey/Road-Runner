@@ -1,1 +1,43 @@
 body{padding-top:50px;padding-bottom:20px}.body-content{padding-left:15px;padding-right:15px}.carousel-caption p{font-size:20px;line-height:1.4}.carousel-inner .item img[src$=".svg"]{width:100%}#qrCode{margin:15px}@media screen and (max-width:767px){.carousel-caption{display:none}}
+
+/* tr, h2, h4, h1 {
+	color: white;
+} */
+
+
+a {
+    color:	#428bca
+}
+
+a.btn.btn-link {
+
+	color:	#428bca
+}
+
+input.btn.btn-link {
+
+	color:	#428bca
+}
+body{background:url(https://image.ibb.co/f3ZmbT/opacity.jpg);
+	background-attachment:fixed;
+	background-size:cover;
+	background-opacity: .5;
+	
+	}
+
+#moveme {
+	padding-top: 8%;
+	text-align: center;
+
+
+}
+	  
+::-webkit-input-placeholder  { 
+	color: rgb(190, 188, 188); 
+	font-style: italic;
+}
+input:-moz-placeholder,
+textarea:-moz-placeholder{ 
+	color: rgb(190, 188, 188);
+	font-style: italic;
+} 

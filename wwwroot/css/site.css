@@ -1,4 +1,6 @@
-﻿body {
+﻿
+
+body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
@@ -40,4 +42,22 @@ body,
     .carousel-caption {
         display: none;
     }
+}
+tr, h2, h4, h1 {
+	color: white;
+}
+
+
+a {
+    color: yellow;
+}
+
+a.btn.btn-link {
+
+	color: yellow;
+}
+
+input.btn.btn-link {
+
+	color: yellow;
 }

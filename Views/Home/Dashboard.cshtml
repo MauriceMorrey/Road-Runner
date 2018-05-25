@@ -4,21 +4,23 @@
 @{bool runner = ViewBag.runner;}
 
 
-<a style="margin-left: 10px;" class="btn btn-primary pull-right" href="/logout">Logout</a>
-<form class="form-inline mr-auto pull-right" asp-controller="Home" asp-action="Search" method="GET" >
-    <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Search friends.." aria-label="Search">
-    <button class="btn btn-success" type="submit">
-        @if(ViewBag.Message != "")
+        <a style="margin-left: 10px;" class="btn btn-primary pull-right" href="/logout">Logout</a>
+        <form class="form-inline mr-auto pull-right" asp-controller="Home" asp-action="Search" method="GET" >
+         <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Search friends.." aria-label="Search">
+            <button class="btn btn-success" type="submit">
+             @if(ViewBag.Message != "")
         {
-        <span class="glyphicon glyphicon-search">@ViewBag.Message</span>
+            <span class="glyphicon glyphicon-search">@ViewBag.Message</span>
         }
-    </button>
-</form>
+            </button>
+        </form>
 
 
 
 
-<h2>Hello, <span style="color: rgb(13, 143, 143)">@ViewBag.user.username</span>!</h2><br>
+
+<h2>Hello, <span></span>@ViewBag.user.username</span>!</h2><br>
+
 <div class="container">
 <h4>Are you ready for your next <a href="create">trip</a>?</h4><hr>
 <h1>Your Trips</h1>

@@ -6,24 +6,24 @@
     <a href="/logout" style="margin-left: 10px;"class="btn btn-primary pull-right">Logout</a>
     <a href="/dashboard" style="margin-left: 10px;"class="btn btn-primary pull-right">Dashboard</a>
 
-
-<h1>Create New Trip!</h1><br>
-<form asp-action="Create" asp-controller="Home" method="post">
+<div id= "moveme">
+<h1>Create Your Trip!</h1><br>
+<form asp-action="Create" asp-controller="Home" method="post" style= "width: 40%; margin: 0 auto;">
         <div class="form-group">
             <label for="start_point">Start Point:</label>
-            <input class="form-control" asp-for="start_point">
+            <input class="form-control"  asp-for="start_point" placeholder="eg. Chicago, IL">
             <span class="text-danger" asp-validation-for="start_point"></span>        
         </div>
         <div class="form-group">
             <label for="destination">Destination:</label>
-            <input class="form-control" asp-for="destination">
+            <input class="form-control" asp-for="destination" placeholder="eg. Starved Rock State Park">
             <span class="text-danger" asp-validation-for="destination"></span>
 
             
         </div>
         <div class="form-group">
             <label for="description">Description:</label>
-            <textarea class="form-control" asp-for="description" rows="4"></textarea>
+            <textarea class="form-control" asp-for="description" rows="4" placeholder="Describe your trip...."></textarea>
             <span class="text-danger" asp-validation-for="description"></span>
     
         </div>
@@ -40,5 +40,6 @@
             
         </div>
 
-        <button type="submit" class="btn btn-link">Create</button>
+        <button type="submit" class="btn btn-primary">Create</button>
 </form><br>
+</div>
