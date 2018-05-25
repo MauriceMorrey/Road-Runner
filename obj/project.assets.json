@@ -12788,11 +12788,19 @@
   "project": {
     "version": "1.0.0",
     "restore": {
+<<<<<<< HEAD
       "projectUniqueName": "/Users/justinhongosh/Documents/road_runner/Road-Runner/road_runner.csproj",
       "projectName": "road_runner",
       "projectPath": "/Users/justinhongosh/Documents/road_runner/Road-Runner/road_runner.csproj",
       "packagesPath": "/Users/justinhongosh/.nuget/packages/",
       "outputPath": "/Users/justinhongosh/Documents/road_runner/Road-Runner/obj/",
+=======
+      "projectUniqueName": "/Users/justinhongosh/Documents/road_runner/Road-Runner-master/road_runner.csproj",
+      "projectName": "road_runner",
+      "projectPath": "/Users/justinhongosh/Documents/road_runner/Road-Runner-master/road_runner.csproj",
+      "packagesPath": "/Users/justinhongosh/.nuget/packages/",
+      "outputPath": "/Users/justinhongosh/Documents/road_runner/Road-Runner-master/obj/",
+>>>>>>> 4878beeb7ff977908ccf0167acbc2e41d2aebea6
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"

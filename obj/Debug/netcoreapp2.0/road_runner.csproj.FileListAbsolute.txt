@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /Users/justinhongosh/Documents/road_runner/Road-Runner/bin/Debug/netcoreapp2.0/road_runner.deps.json
 /Users/justinhongosh/Documents/road_runner/Road-Runner/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.json
 /Users/justinhongosh/Documents/road_runner/Road-Runner/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.dev.json
@@ -9,3 +10,38 @@
 /Users/justinhongosh/Documents/road_runner/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.dll
 /Users/justinhongosh/Documents/road_runner/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.pdb
 /Users/justinhongosh/Documents/road_runner/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.csprojResolveAssemblyReference.cache
+=======
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/bin/Debug/netcoreapp2.0/road_runner.deps.json
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.json
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.dev.json
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/bin/Debug/netcoreapp2.0/road_runner.dll
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/bin/Debug/netcoreapp2.0/road_runner.pdb
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/obj/Debug/netcoreapp2.0/road_runner.csprojResolveAssemblyReference.cache
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/obj/Debug/netcoreapp2.0/road_runner.csproj.CoreCompileInputs.cache
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/obj/Debug/netcoreapp2.0/road_runner.AssemblyInfoInputs.cache
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/obj/Debug/netcoreapp2.0/road_runner.AssemblyInfo.cs
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/obj/Debug/netcoreapp2.0/road_runner.dll
+C:/Users/mac/Desktop/DojoAssignments/C#/ENTITYFRAMEWORKCORE/RoadRunner/obj/Debug/netcoreapp2.0/road_runner.pdb
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/bin/Debug/netcoreapp2.0/road_runner.deps.json
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.json
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.dev.json
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/bin/Debug/netcoreapp2.0/road_runner.dll
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/bin/Debug/netcoreapp2.0/road_runner.pdb
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.csprojResolveAssemblyReference.cache
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.csproj.CoreCompileInputs.cache
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.AssemblyInfoInputs.cache
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.AssemblyInfo.cs
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.dll
+/Users/konrad.labuz/Documents/CD_Projects/C#/Road-Runner/obj/Debug/netcoreapp2.0/road_runner.pdb
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/bin/Debug/netcoreapp2.0/road_runner.deps.json
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.json
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/bin/Debug/netcoreapp2.0/road_runner.runtimeconfig.dev.json
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/bin/Debug/netcoreapp2.0/road_runner.dll
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/bin/Debug/netcoreapp2.0/road_runner.pdb
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/obj/Debug/netcoreapp2.0/road_runner.csprojResolveAssemblyReference.cache
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/obj/Debug/netcoreapp2.0/road_runner.csproj.CoreCompileInputs.cache
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/obj/Debug/netcoreapp2.0/road_runner.AssemblyInfoInputs.cache
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/obj/Debug/netcoreapp2.0/road_runner.AssemblyInfo.cs
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/obj/Debug/netcoreapp2.0/road_runner.dll
+/Users/justinhongosh/Documents/road_runner/Road-Runner-master/obj/Debug/netcoreapp2.0/road_runner.pdb
+>>>>>>> 4878beeb7ff977908ccf0167acbc2e41d2aebea6

@@ -4480,6 +4480,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 	-o-animation-name: scaleIn;
 	animation-name: scaleIn;
 }
+<<<<<<< HEAD
 
 
 tr, h2, h4, h1 {
@@ -4500,3 +4501,5 @@ input.btn.btn-link {
 
 	color: yellow;
 }
+=======
+>>>>>>> 4878beeb7ff977908ccf0167acbc2e41d2aebea6

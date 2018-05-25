@@ -3,7 +3,11 @@
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <RestoreSuccess Condition=" '$(RestoreSuccess)' == '' ">True</RestoreSuccess>
     <RestoreTool Condition=" '$(RestoreTool)' == '' ">NuGet</RestoreTool>
+<<<<<<< HEAD
     <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">/Users/justinhongosh/Documents/road_runner/Road-Runner/obj/project.assets.json</ProjectAssetsFile>
+=======
+    <ProjectAssetsFile Condition=" '$(ProjectAssetsFile)' == '' ">/Users/justinhongosh/Documents/road_runner/Road-Runner-master/obj/project.assets.json</ProjectAssetsFile>
+>>>>>>> 4878beeb7ff977908ccf0167acbc2e41d2aebea6
     <NuGetPackageRoot Condition=" '$(NuGetPackageRoot)' == '' ">/Users/justinhongosh/.nuget/packages/</NuGetPackageRoot>
     <NuGetPackageFolders Condition=" '$(NuGetPackageFolders)' == '' ">/Users/justinhongosh/.nuget/packages/;/usr/local/share/dotnet/sdk/NuGetFallbackFolder</NuGetPackageFolders>
     <NuGetProjectStyle Condition=" '$(NuGetProjectStyle)' == '' ">PackageReference</NuGetProjectStyle>
