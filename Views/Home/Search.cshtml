@@ -6,7 +6,7 @@
     <a href="/logout"style="margin-left: 10px;" class="btn btn-primary pull-right">Logout</a>
     <a href="/dashboard" style="margin-left: 10px;" class="btn btn-primary pull-right">Dashboard</a>
     
-<h1>this is the search results page.</h1>
+<h1>Your search results:</h1>
 
 
     
@@ -14,8 +14,8 @@
 <hr>
 
 <ul>
-    <li> <a href="/user/@ViewBag.friend.userId">@ViewBag.friend.first_name @ViewBag.friend.last_name</a> </li>
-    <li>@ViewBag.friend.username</li>
+    <li style="font-size: 18px">Name:<a href="/user/@ViewBag.friend.userId"> @ViewBag.friend.first_name @ViewBag.friend.last_name</a> </li>
+    <li style="font-size: 16px">Username: @ViewBag.friend.username</li>
 </ul> 
        
 
@@ -31,5 +31,5 @@
 } else if(ViewBag.friend == ViewBag.currentUser){
 
 } else {
-<p>You are already friends with @ViewBag.friend.first_name @ViewBag.friend.last_name!</p>
+<p class="text-danger">You are already friends with @ViewBag.friend.first_name @ViewBag.friend.last_name!</p>
 }
