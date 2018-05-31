@@ -11,8 +11,8 @@ using System;
 namespace road_runner.Migrations
 {
     [DbContext(typeof(RoadRunnerContext))]
-    [Migration("20180524223023_first")]
-    partial class first
+    [Migration("20180531043912_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

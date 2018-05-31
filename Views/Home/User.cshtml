@@ -4,12 +4,12 @@
     <a href="/logout" style="margin-left: 10px;"class="btn btn-primary pull-right">Logout</a>
     <a href="/dashboard" style="margin-left: 10px;"class="btn btn-primary pull-right">Dashboard</a>
    
-
+@{int friends = @ViewBag.thisUser.sent.Count + @ViewBag.thisUser.received.Count;}
 
 <h1>This is <span style="color: rgb(13, 143, 143)">@ViewBag.thisUser.username's</span> homepage</h1>
 <h3>Name: @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name</h3><br>
 <h4>Email Address: @ViewBag.thisUser.email</h4>
-<h4>Number of Friends: @ViewBag.thisUser.sent.Count + @ViewBag.thisUser.received.Count</h4>
+<h4>Number of Friends: @friends</h4>
 <h4>Trips Created: @ViewBag.thisUser.planned.Count</h4>
 <h4>Trips Joined: @ViewBag.thisUser.attended.Count</h4>
 
