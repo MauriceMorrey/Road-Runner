@@ -5,17 +5,36 @@
 
 
 <a style="margin-left: 10px;" class="btn btn-primary pull-right" href="/logout">Logout</a>
+
 <form class="form-inline mr-auto pull-right" asp-controller="Home" asp-action="Search" method="GET" >
-    <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Search friends.." aria-label="Search">
+    <input class="form-control mr-sm-2" type="text" name="searchString" placeholder="Search friend by mail.." aria-label="Search">
     <button class="btn btn-success" type="submit">
-        <span class="glyphicon glyphicon-search"></span>
+        @if(ViewBag.Message != "")
+        {
+        <span class="glyphicon glyphicon-search">@ViewBag.Message</span>
+        }
     </button>
 </form>
 
 
 
 
+
+
 <h2>Hello, <span style="color: rgb(13, 143, 143)">@ViewBag.user.username</span>!</h2><br>
+
+  @foreach(var user in ViewBag.pending)
+    {
+        <div class="alert alert-success" role="alert">
+        
+  <h4>Is <span class="text-danger">@user.username</span> your friend?</h4>
+        <form asp-action="Accept" asp-controller="Home" method="POST">
+            <input type="hidden" name="userId" value=@user.userId>
+            <input class="btn btn-success"type="submit" value="Accept Request">
+        </form>
+               </div>
+        
+    }
 <div class="container">
 <h4>Are you ready for your next <a href="create">trip</a>?</h4><hr>
 <h1>Your Trips</h1>
@@ -75,11 +94,12 @@
     
 </tbody>
     </table>
-        <a href="/create" class="btn btn-link">New Trip</a>
+    
+        <a href="/create" class="btn btn-primary">New Trip</a>
 
 
 
-    <h1>Road Runners you may know..</h1>
+    <h1>Friends you may know..</h1>
 <table class="table table-dark">
   <thead>
     <tr>
@@ -136,11 +156,3 @@
     </table>
 
     </div>
-    @foreach(var user in ViewBag.pending)
-    {
-        @user.username
-        <form asp-action="Accept" asp-controller="Home" method="POST">
-            <input type="hidden" name="userId" value= @user.userId>
-            <input type="submit" class="btn btn-success" value="Accept Request">
-        </form>
-    }

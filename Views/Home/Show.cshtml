@@ -1,11 +1,14 @@
 @{
     ViewData["Title"] = "Details Page";
 }
+@{bool runner = false;}
 
-<p class="text-right">
-    <a href="/dashboard" class="btn btn-primary">Dashboard</a>
-    <a href="/logout" class="btn btn-primary">Logout</a>
-</p>
+
+    <a href="/logout" style="margin-left: 10px;"class="btn btn-primary pull-right">Logout</a>
+    <a href="/dashboard" style="margin-left: 10px;"class="btn btn-primary pull-right">Dashboard</a>
+  
+
+
 
 <h1>@ViewBag.t.destination</h1>
 
@@ -14,14 +17,86 @@ by @ViewBag.t.planner.username
 
 <h4>Description: @ViewBag.t.description</h4><br>
 
-<h4>Runners:</h4>   
-    @foreach (var user in @ViewBag.t.runners)
-    {   
+<table border="1">
+  <tr>
+    <td valign="top">
+      <div id="map" style="width: 1140px; height: 500px;"></div>
+    </td>
+    
+  </tr>
+</table>
+<input type="hidden" id="from" value=@ViewBag.t.start_point />
+<input type="hidden" id="to" value=@ViewBag.t.destination />
+<br>
+
+
+
+
+<div class="row">
+    <div class="col-sm-3 text-center">
+        <h4>Runners:</h4> 
+        <hr>  
+        <div style="border: solid 1px rgb(46, 0, 0); padding: 10px; border-radius: 5px" class="pre-scrollable">
+        @foreach (var user in @ViewBag.t.runners)
+        {   
+            @if(user.userId == ViewBag.current.userId)
+            {
+            runner = true;
+            }
+            {
+            <h4><a href="/user/@user.userId">@user.user.username</a></h4>
+            }
+            
+        } 
+        </div>
+    </div>
+
+
+    <div class="col-sm-9">
+        @if(runner == true)
         {
-        <h5><a href="/user/@user.userId">@user.user.first_name @user.user.last_name</a></h5>
+        <h4>Trip Messenger:</h4><hr>
+                <div style="border: solid 1px rgb(46, 0, 0); padding: 10px; border-radius: 5px" class="pre-scrollable">
+                    @foreach (var v in ViewBag.ideas)
+                    {
+                        <div style="margin-bottom: -50px">
+                            <h4> <span class="text-danger">@v.creator.username</span>: @v.content</h4>
+                            @if(v.creator.userId == ViewBag.current.userId){            
+
+                            <p>Sent at @v.created_at.ToString("MMM dd, yyyy hh:mm tt")</p>
+                                
+                                <form asp-action="DeletePost" asp-controller="Home" method="post">
+                        
+                            <input type="hidden" value=@v.tripId name="tripId">
+                            <input type="hidden" value=@v.postId name="postId">
+                            <input style="position: relative; bottom: 38px; margin-left: 215px;" class="btn btn-link" type="submit" value="Delete">
+                            
+                                </form>
+                            }
+
+                        </div>
+                        <br>  
+                    }
+            
+                </div>
+            <br>
+        <form asp-action="CreatePost" asp-controller="Home" method="post">    
+        <div class="row">
+        <div class="col-sm-10">
+
+
+           <textarea style="margin: 0px -63.75px 0px 0px; width: 764px; height: 46px;" name="content" class="form-control" placeholder="Message.." aria-label="With textarea"></textarea>
+           </div>
+           <div class="col-sm-2">
+           <input class="btn btn-danger btn-lg pull-right" type="submit" value="Post!" name="submit">
+           <input type="hidden" value=@ViewBag.t.tripId name="tripId">
+           </div>
+           </div>
+        </form>  
         }
-       
-    } 
+    </div>
+</div>
+
     
    
 

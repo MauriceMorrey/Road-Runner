@@ -1,17 +1,23 @@
 @{
     ViewData["Title"] = "User Page";
 }
+    <a href="/logout" style="margin-left: 10px;"class="btn btn-primary pull-right">Logout</a>
+    <a href="/dashboard" style="margin-left: 10px;"class="btn btn-primary pull-right">Dashboard</a>
+   
 
-<p class="text-right">
-    <a href="/dashboard" class="btn btn-primary">Dashboard</a>
-    <a href="/logout" class="btn btn-primary">Logout</a>
-</p>
+
+<h1>This is <span style="color: rgb(13, 143, 143)">@ViewBag.thisUser.username's</span> homepage</h1>
+<h3>Name: @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name</h3><br>
+<h4>Email Address: @ViewBag.thisUser.email</h4>
+<h4>Number of Friends: @ViewBag.thisUser.sent.Count + @ViewBag.thisUser.received.Count</h4>
+<h4>Trips Created: @ViewBag.thisUser.planned.Count</h4>
+<h4>Trips Joined: @ViewBag.thisUser.attended.Count</h4>
+
+
+
+ 
 <hr>
 
-
-@ViewBag.thisUser.first_name @ViewBag.thisUser.last_name
-
-<hr>
 
 @if(ViewBag.thisUser != ViewBag.currentUser && ViewBag.friends == false)
 {
@@ -21,8 +27,30 @@
         <input class="btn btn-link" type="submit" value="Add friend">
 </form>
 } else if(ViewBag.thisUser == ViewBag.currentUser){
-<p><a href="#">Update your profile</a></p>
+
 } else {
-<p>You are already friends with @ViewBag.thisUser.first_name @ViewBag.thisUser.last_name!</p>
+  @foreach (var f in @ViewBag.friendy)
+    
+    {
+        @if(f.senderId == ViewBag.currentUser.userId && f.receiverId == ViewBag.thisUser.userId)
+        {
+    <form asp-action="removefriend" asp-controller="Home" method="post">
+    
+        <input type="hidden" value=@f.friendId name="friendId">
+        <input class="btn btn-link" type="submit" value="Remove friend">
+        
+    </form>
+    } else if (f.receiverId == ViewBag.currentUser.userId && f.senderId == ViewBag.thisUser.userId)
+    {
+        <form asp-action="removefriend" asp-controller="Home" method="post">
+    
+        <input type="hidden" value=@f.friendId name="friendId">
+        <input class="btn btn-link" type="submit" value="Remove friend">
+        
+    </form>
+    }
+    
+}
+    
 }
 
